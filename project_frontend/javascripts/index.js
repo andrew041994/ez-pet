@@ -16,11 +16,27 @@ async function listTreats(obj) {
     const mainDiv = document.getElementById("treats")
     const ul = document.createElement("ul")
     obj.map((t) => {
+        let btn = document.createElement("button")
+        btn.setAttribute("class", "delete")
+        btn.innerText = "Delete"
+        btn.addEventListener('click', event => {
+            event.preventDefault
+            deleteTreat(t)
+        })
+        let div = document.createElement("div")
+        div.setAttribute("id", "treat-card")
+
         let li = document.createElement("li")
         li.innerText = t.name
-        ul.appendChild(li)
+        div.appendChild(li)
+        div.appendChild(btn)
+        ul.appendChild(div)
         console.log(t.name)
     })
 mainDiv.appendChild(ul)
    
+}
+
+async function deleteTreat(treat) {
+    
 }
