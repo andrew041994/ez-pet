@@ -5,9 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
- Treat.create(name: "kibble1", pet_id: 1)
- Treat.create(name: "kibble2", pet_id: 1) 
- Treat.create(name: "kibble3", pet_id: 1)
- Treat.create(name: "kibble4", pet_id: 1)
- Treat.create(name: "kibble5", pet_id: 1)
- Treat.create(name: "kibble6", pet_id: 1)
+ Pet.first.treats.create([{ name: "kibble1"},{name: "kibble2"}, {name: "kibble3"}])
+
+
+#  Treat.create(name: "kibble4")
+#  Treat.create(name: "kibble5")
+#  Treat.create(name: "kibble6")

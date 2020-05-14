@@ -1,8 +1,8 @@
 class TreatsController < ApplicationController
 
     def index
-        treats = Treat.all
-        render json: treats
+        pet = Pet.find_by(id: params[:pet_id])
+        render json: pet.treats
         
     end
 
@@ -17,6 +17,6 @@ class TreatsController < ApplicationController
         end
     end
 
-    
+
 
 end
