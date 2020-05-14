@@ -11,7 +11,7 @@ async function getPets() {
 }
 
 function listPets(obj) {
-    const body = document.querySelector("body")
+    // const body = document.querySelector("body")
     const mainDiv = document.createElement("div")
     mainDiv.setAttribute("id", "pets")
     const ul = document.createElement("ul")
@@ -20,12 +20,13 @@ function listPets(obj) {
         li.innerText = p.name 
         li.addEventListener('click', event => {
             event.preventDefault
+           
             getTreats(p)
         })
         ul.appendChild(li)
     })
     mainDiv.appendChild(ul)
-    body.appendChild(mainDiv)
+   document.body.appendChild(mainDiv)
 }
 
 async function getTreats(p) {
@@ -35,7 +36,9 @@ async function getTreats(p) {
 }
 
 async function listTreats(obj) {
-    const mainDiv = document.getElementById("treats")
+    const div = document.getElementById("pets")
+    const mainDiv = document.createElement("div")
+    mainDiv.setAttribute("id", "treats")
     const ul = document.createElement("ul")
     obj.map((t) => {
 
@@ -56,7 +59,8 @@ async function listTreats(obj) {
         ul.appendChild(div)
         console.log(t.name)
     })
-mainDiv.appendChild(ul)
+     mainDiv.appendChild(ul)
+     document.body.replaceChild(mainDiv,div)
 createForm()
    
 }
