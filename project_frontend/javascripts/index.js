@@ -32,10 +32,13 @@ function listPets(obj) {
 async function getTreats(p) {
     const resp = await fetch(`http://localhost:3000/pets/${p.id}`)
     const resp_1 = await resp.json()
-    return listTreats(resp_1)
+    return listTreats(resp_1,p)
 }
 
-async function listTreats(obj) {
+async function listTreats(obj, pet) {
+    const name = document.createElement("h3")
+    name.setAttribute("id", "name")
+    name.innerText = pet.name
     const div = document.getElementById("pets")
     const mainDiv = document.createElement("div")
     mainDiv.setAttribute("id", "treats")
@@ -59,9 +62,10 @@ async function listTreats(obj) {
         ul.appendChild(div)
         console.log(t.name)
     })
+    mainDiv.appendChild(name)
      mainDiv.appendChild(ul)
      document.body.replaceChild(mainDiv,div)
-createForm()
+createTreatForm(pet)
    
 }
 
@@ -83,7 +87,7 @@ async function removeFromDom(treat) {
 }
 
 
-function createForm() {
+function createTreatForm(pet) {
     let div = document.createElement("div")
     div.setAttribute("class", "container")  
     let form = document.createElement("form")
@@ -91,12 +95,10 @@ function createForm() {
     let input = document.createElement("input")
     Object.assign(input, {
         type: 'text',
-        name: 'name',
+        id: 'input',
         placeholder:'Enter a New Treat Name...',
-        class: 'input-text',
-        onclick: function () {
-          alert('Clicked!')
-        }
+        class: 'input-text'
+        
       })
     
     let submit = document.createElement("input") 
@@ -104,14 +106,27 @@ function createForm() {
         type: 'submit',
         id: 'submit',
         name: 'submit',
-        value: 'Creat New Treat',
-        class: submit
+        value: 'Create New Treat',
+        // class: submit,
 
     })
+
+    submit.addEventListener('click', event => {
+        event.preventDefault
+
+        let treatName = document.getElementById("input").value
+        postTreat()
+    })
+   
+    // console.log(name)
+    
     form.appendChild(input)
     form.appendChild(submit)
     div.appendChild(form)
     document.body.appendChild(div)
+}
 
-
+function fn() {
+   
+    console.log(name)
 }
