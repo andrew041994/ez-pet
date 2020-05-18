@@ -15,11 +15,13 @@ function listPets(obj) {
     // const body = document.querySelector("body")
     const mainDiv = document.createElement("div")
     mainDiv.setAttribute("id", "pets")
+    mainDiv.setAttribute("class", "pets")
     const ul = document.createElement("ul")
     obj.map((p) => {
         let div = document.createElement("div")
         div.setAttribute("id",`${p.id}`)
         let li = document.createElement("li")
+        li.setAttribute("class", "petname")
         li.innerText = p.name 
         
         li.addEventListener('click', event => {
