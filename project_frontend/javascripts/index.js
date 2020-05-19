@@ -18,24 +18,26 @@ function listPets(obj) {
     mainDiv.setAttribute("class", "pets")
     const ul = document.createElement("ul")
     obj.map((p) => {
+       let pet = new Pet(p)
+       console.log(pet)
         let div = document.createElement("div")
-        div.setAttribute("id",`${p.id}`)
+        div.setAttribute("id",`${pet.id}`)
         div.setAttribute("class", "petname")
         let li = document.createElement("li")
         
-        li.innerText = p.name 
+        li.innerText = pet.name 
         
         li.addEventListener('click', event => {
             event.preventDefault
            
-            getTreats(p)
+            getTreats(pet)
         })
         let btn = document.createElement("button")
         btn.setAttribute("class", "delete")
         btn.innerText = "Delete"
         btn.addEventListener('click', event => {
             event.preventDefault
-            deletePet(p)
+            deletePet(pet)
         })
         div.appendChild(li)
         div.appendChild(btn)
