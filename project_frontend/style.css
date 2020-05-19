@@ -1,25 +1,86 @@
-h1 {
+ul {
+    list-style-type: none;
+  }
+ 
+ h1 {
     color: blue;
     font-size: 50px;
     text-align: center;
     background-color: greenyellow;
   }
 
+  
+
   .pets {
-      color: rgba(0, 238, 255, 0.884);
+    display: block;
+    font-size: 30px;
+    font-style: oblique;
+    font-weight: 600;
+    color: aqua;
+	width: 150px;
+	height: 600px;
+ 	
+	margin: auto;
+}
 
-      font-size: larger;
-      font-weight: 550;
-      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-      font-style: oblique;
-      /* text-align: center; */
+/* 
+button {
+    display: block;
+} *//*
+button:after {
+    content:"\a";
+    white-space: pre;
+}
 
-  }
+button:before {
+    content:"";
+    white-space: pre;
+} 
 
-  ul {
-     align-items: center;
-  } 
+/* .petname:after {
+    content:"\a";
+    white-space: pre;
+
+} */
+
+.petname:before {
+    content:"\a";
+    white-space: pre;
+
+}
+/* .petname::marker:before {
+    content:"\a\a\a\a";
+    white-space: pre;
+} */
+
+
+
 
   body {
       background-color: rgba(0, 0, 0, 0.671);
   }
+
+  .treats {
+      text-align: center;
+    display: block;
+    font-size: 35px;
+    font-style: oblique;
+    font-weight: 600;
+    color: aqua;
+	
+}
+
+
+ .add-treat-form {
+   padding-left: 400px;
+}
+
+.treat-card:before {
+    content:"\a";
+    white-space: pre;
+
+}
+
+
+
+

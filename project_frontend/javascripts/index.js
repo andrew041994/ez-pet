@@ -20,8 +20,9 @@ function listPets(obj) {
     obj.map((p) => {
         let div = document.createElement("div")
         div.setAttribute("id",`${p.id}`)
+        div.setAttribute("class", "petname")
         let li = document.createElement("li")
-        li.setAttribute("class", "petname")
+        
         li.innerText = p.name 
         
         li.addEventListener('click', event => {
@@ -130,6 +131,7 @@ async function listTreats(obj, pet) {
     const div = document.getElementById("pets")
     const mainDiv = document.createElement("div")
     mainDiv.setAttribute("id", "treats")
+    mainDiv.setAttribute("class", "treats")
     const ul = document.createElement("ul")
     obj.map((t) => {
 
@@ -142,6 +144,7 @@ async function listTreats(obj, pet) {
         })
         let div = document.createElement("div")
         div.setAttribute("id", `treat-card-${t.id}`)
+        div.setAttribute("class", "treat-card")
 
         let li = document.createElement("li")
         li.innerText = t.name
@@ -152,6 +155,7 @@ async function listTreats(obj, pet) {
     })
     // let unwanted = document.getElementsByClassName("add-pet-form")
     // mainDiv.appendChild(name)
+     mainDiv.appendChild(name)
      mainDiv.appendChild(ul)
      document.body.replaceChild(mainDiv,div)
     //  document.body.replaceChild(name,unwanted)
@@ -186,6 +190,7 @@ function createTreatForm(pet) {
     Object.assign(input, {
         type: 'text',
         id: 'input',
+        class: 'input',
         placeholder:'Enter a New Treat Name...',
         class: 'input-text'
         
@@ -196,6 +201,7 @@ function createTreatForm(pet) {
         type: 'submit',
         id: 'submit',
         name: 'submit',
+        class: 'submit',
         value: 'Create New Treat',
         // class: submit,
 
