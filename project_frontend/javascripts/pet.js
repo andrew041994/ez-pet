@@ -27,6 +27,7 @@ class Pet {
 
    static listPet() {
 
+    console.log(this)
     let pet = new Pet(this)
     //    console.log(pet)
         let div = document.createElement("div")
@@ -47,7 +48,7 @@ class Pet {
         btn.addEventListener('click', event => {
             event.preventDefault()
          //    debugger
-            this.deletePet.call(pet)
+          Pet.deletePet.call(pet)
         })
         div.appendChild(li)
         div.appendChild(btn)
@@ -64,7 +65,7 @@ class Pet {
        this.mapPets(resp_1)
     };
 
-   static async deletePet() {
+  static async deletePet() {
         const resp = await fetch(`http://localhost:3000/pets/${this.id}`,{
             method: "DELETE"
         })
@@ -86,7 +87,7 @@ class Pet {
             body: JSON.stringify({
               "name": this          
             })   
-          }).then(resp => resp.json()).then(json => console.log(json));
+          }).then(resp => resp.json()).then(json => Pet.listPet.call(json));
     }; 
     
 
