@@ -1,72 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
     Pet.getPets()
     Pet.createMainPetDiv()
+    createPetForm()
     
 });
 
 
 
-// async function getPets() {
-//     const resp = await fetch("http://localhost:3000/pets")
-//     const resp_1 = await resp.json()
-//     listPets(resp_1)
-// };
-
-// function listPets(obj) {
-//     const mainDiv = document.createElement("div")
-//     mainDiv.setAttribute("id", "pets")
-//     mainDiv.setAttribute("class", "pets")
-//     const ul = document.createElement("ul")
-//     obj.map((p) => {
-//        let pet = new Pet(p)
-//     //    console.log(pet)
-//         let div = document.createElement("div")
-//         div.setAttribute("id",`${pet.id}`)
-//         div.setAttribute("class", "petname")
-//         let li = document.createElement("li")
-        
-//         li.innerText = pet.name 
-        
-//         li.addEventListener('click', event => {
-//             event.preventDefault()
-           
-//             getTreats(pet)
-//         })
-//         let btn = document.createElement("button")
-//         btn.setAttribute("class", "delete")
-//         btn.innerText = "Delete"
-//         btn.addEventListener('click', event => {
-//             event.preventDefault()
-//             deletePet(pet)
-//         })
-//         div.appendChild(li)
-//         div.appendChild(btn)
-//         ul.appendChild(div)
-       
-//     })
-//     mainDiv.appendChild(ul)
-   
-//    document.body.appendChild(mainDiv)
-//    createPetForm()
-// };
-
-// async function deletePet(pet) {
-//     const resp = await fetch(`http://localhost:3000/pets/${pet.id}`,{
-//         method: "DELETE"
-//     })
-
-//     /* a success msg is being returned*/
-
-//     removePetFromDom(pet)
-//     const resp_1 = await resp.json()
-//   console.log(resp_1)
-
-// }
-
-// async function removePetFromDom(pet) {
-    
-// document.getElementById(`${pet.id}`).remove()
-// }
 
 function createPetForm(){
     let petDiv = document.getElementById("pets")
@@ -105,62 +45,66 @@ function createPetForm(){
     div.appendChild(form);
     petDiv.appendChild(div);
 };
+// ##################################################################
 
-// function postPet(petName) {
-//     fetch(`http://localhost:3000/pets` , {
-//         method: "POST",
-//         headers: {
-//                 "Content-Type": "application/json",
-//                 "Accept": "application/json"
-//         },
-//         body: JSON.stringify({
-//           "name": petName          
-//         })   
-//       }).then(resp => resp.json()).then(json => console.log(json));
-// }; 
-
-async function getTreats(p) {
-    const resp = await fetch(`http://localhost:3000/pets/${p.id}`)
+async function getTreats(pet) {
+    const resp = await fetch(`http://localhost:3000/pets/${pet.id}`)
     const resp_1 = await resp.json()
-    return listTreats(resp_1,p)
+    mapTreats(resp_1,pet)
 };
 
-async function listTreats(obj, pet) {
+async function mapTreats(arrayOfTreats, pet) {
+  
+    // name.innerText = pet.name
+    
+    arrayOfTreats.map((treat) => {
+        listTreat(treat,pet)
+       
+
+      
+    })
+   
+    
+   
+};
+
+
+function createMainTreatDiv() {
     const name = document.createElement("h3")
     name.setAttribute("id", "name")
-    name.innerText = pet.name
     const div = document.getElementById("pets")
     const mainDiv = document.createElement("div")
     mainDiv.setAttribute("id", "treats")
     mainDiv.setAttribute("class", "treats")
     const ul = document.createElement("ul")
-    obj.map((t) => {
+    ul.setAttribute("id", "treat-ul")
+    mainDiv.appendChild(name)
+    mainDiv.appendChild(ul)
+    document.body.replaceChild(mainDiv,div)
 
-        let btn = document.createElement("button")
-        btn.setAttribute("class", "delete")
-        btn.innerText = "Delete"
-        btn.addEventListener('click', event => {
-            event.preventDefault
-            deleteTreat(t)
-        })
-        let div = document.createElement("div")
-        div.setAttribute("id", `treat-card-${t.id}`)
-        div.setAttribute("class", "treat-card")
 
-        let li = document.createElement("li")
-        li.innerText = t.name
-        div.appendChild(li)
-        div.appendChild(btn)
-        ul.appendChild(div)
-        console.log(t.name)
+}
+
+function listTreat(treat,pet) {
+    document.getElementById("name").innerText = pet.name
+    let btn = document.createElement("button")
+    btn.setAttribute("class", "delete")
+    btn.innerText = "Delete"
+    btn.addEventListener('click', event => {
+        event.preventDefault
+        deleteTreat(treat)
     })
+    let div = document.createElement("div")
+    div.setAttribute("id", `treat-card-${treat.id}`)
+    div.setAttribute("class", "treat-card")
    
-     mainDiv.appendChild(name)
-     mainDiv.appendChild(ul)
-     document.body.replaceChild(mainDiv,div)
-createTreatForm(pet)
-   
-};
+    let li = document.createElement("li")
+    li.innerText = treat.name
+    div.appendChild(li)
+    div.appendChild(btn)
+    document.getElementById("treat-ul").appendChild(div)
+    console.log(treat.name)
+}
 
 async function deleteTreat(treat) {
     const resp = await fetch(`http://localhost:3000/pets/${treat.pet_id}/treats/${treat.id}`,{
@@ -232,6 +176,8 @@ function createTreatForm(pet) {
       "pet_id": pet.id,   
       
     })   
-  }).then(resp => resp.json()).then(json => console.log(json));
+  }).then(resp => resp.json()).then(json => listTreat(json,pet));
+
+
   
 }

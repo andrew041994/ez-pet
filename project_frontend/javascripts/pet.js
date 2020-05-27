@@ -12,7 +12,7 @@ class Pet {
           
        })
        
-      createPetForm()
+      
    };
 
    static createMainPetDiv() {
@@ -41,6 +41,8 @@ class Pet {
             event.preventDefault()
            
             getTreats(pet)
+            createTreatForm(pet)
+            createMainTreatDiv()
         })
         let btn = document.createElement("button")
         btn.setAttribute("class", "delete")
