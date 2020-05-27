@@ -15,7 +15,7 @@ class TreatsController < ApplicationController
         treat = Treat.new(treat_params)
 
         if treat.save
-            render json :treat
+            render json: treat
         else
             render json: {message: "Could Not Save"}
         end

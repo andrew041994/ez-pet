@@ -14,7 +14,7 @@ class PetsController < ApplicationController
         pet = Pet.new(pet_params)
 
         if pet.save
-            render json :pet, {message: "Pet Saved"}
+            render json: pet
             
         else
             render json: {message: "Pet Not Saved"}
@@ -22,14 +22,9 @@ class PetsController < ApplicationController
     end
 
     def destroy
-        pet = Pet.find_by(id: params[:id])
+     Pet.find_by(id: params[:id]).destroy
 
-        if pet.destroy
-            render json: {message: "Pet Was Deleted"}
-            
-        else
-            render json: {message: "Pet Was Not Deleted"}
-        end
+        render json: {message: "Pet Deleted"}
         
     end
 
